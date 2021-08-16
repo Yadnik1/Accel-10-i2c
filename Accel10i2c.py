@@ -13,12 +13,10 @@ class Accel10:
         self.i2c = i2c
         b = bytearray(1)
         b[0] = 0
-        self.i2c.writeto_mem(self.addr,0x21,b)
+        self.i2c.writeto_mem(0x64,0x20,b)
         b[0] = 16
-        self.i2c.writeto_mem(self.addr,0x21,b)
-        b[0] = 8
-        self.i2c.writeto_mem(self.addr,0x21,b)
-    
+        self.i2c.writeto_mem(0x04,0x25,b)
+     
     def xValue(self):
         buff = self.i2c.readfrom_mem(self.addr,regAddress,TO_READ)
         x = (int(buff[1]) << 8) | buff[0]
